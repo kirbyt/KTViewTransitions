@@ -16,6 +16,7 @@
 		689C76D1135733C700BD0E9F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689C76CF135733C700BD0E9F /* MainWindow.xib */; };
 		689C76D4135733C700BD0E9F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689C76D3135733C700BD0E9F /* RootViewController.m */; };
 		689C76D7135733C700BD0E9F /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689C76D5135733C700BD0E9F /* RootViewController.xib */; };
+		689C76DF1357373B00BD0E9F /* UINavigationController+KTTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 689C76DE1357373B00BD0E9F /* UINavigationController+KTTransitions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		689C76D2135733C700BD0E9F /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		689C76D3135733C700BD0E9F /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		689C76D6135733C700BD0E9F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		689C76DD1357373B00BD0E9F /* UINavigationController+KTTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+KTTransitions.h"; path = "../../UINavigationController+KTTransitions.h"; sourceTree = "<group>"; };
+		689C76DE1357373B00BD0E9F /* UINavigationController+KTTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+KTTransitions.m"; path = "../../UINavigationController+KTTransitions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				689C76D2135733C700BD0E9F /* RootViewController.h */,
 				689C76D3135733C700BD0E9F /* RootViewController.m */,
 				689C76D5135733C700BD0E9F /* RootViewController.xib */,
+				689C76DD1357373B00BD0E9F /* UINavigationController+KTTransitions.h */,
+				689C76DE1357373B00BD0E9F /* UINavigationController+KTTransitions.m */,
 				689C76C4135733C700BD0E9F /* Supporting Files */,
 			);
 			path = NavigationControllerTransitions;
@@ -167,6 +172,7 @@
 				689C76CB135733C700BD0E9F /* main.m in Sources */,
 				689C76CE135733C700BD0E9F /* NavigationControllerTransitionsAppDelegate.m in Sources */,
 				689C76D4135733C700BD0E9F /* RootViewController.m in Sources */,
+				689C76DF1357373B00BD0E9F /* UINavigationController+KTTransitions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "UINavigationController+KTTransitions.h"
 
 NSString * const kDictKeyText = @"text";
 NSString * const kDictKeySelectorName = @"selectorName";
@@ -31,9 +32,23 @@ NSString * const kDictKeySelectorName = @"selectorName";
    
    [self setTitle:@"Transitions"];
    
+   [[self navigationController] setNavigationBarHidden:YES];
+   
+   BOOL isRootViewController = ([[[self navigationController] viewControllers] count] == 1);
+   
    // Setup menu.
    NSMutableArray *newArray = [[NSMutableArray alloc] init];
-   [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Explode", kDictKeyText, @"explode", kDictKeySelectorName, nil]];
+   if (isRootViewController) {
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Push Explode", kDictKeyText, @"pushExplode", kDictKeySelectorName, nil]];
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Push Slide Up", kDictKeyText, @"pushSlideUp", kDictKeySelectorName, nil]];
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Push Fade In", kDictKeyText, @"pushFadeIn", kDictKeySelectorName, nil]];
+      
+   } else {
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Pop Implode", kDictKeyText, @"popImplode", kDictKeySelectorName, nil]];
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Pop Slide Down", kDictKeyText, @"popSlideDown", kDictKeySelectorName, nil]];
+      [newArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Pop Fade Out", kDictKeyText, @"popFadeOut", kDictKeySelectorName, nil]];
+      
+   }
    [self setData:newArray];
    [newArray release];
 }
@@ -78,18 +93,63 @@ NSString * const kDictKeySelectorName = @"selectorName";
 #pragma mark -
 #pragma mark Menu Actions
 
-- (void)explode
+- (void)pushExplode
 {
-   NSLog(@"%s", __PRETTY_FUNCTION__);
-   /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+   NSInteger c = (arc4random() % 10) + 1;
+   UIColor *color = [UIColor colorWithRed:(c&4) ? 1.0 : 0.0 green:(c&2) ? 1.0 : 0.0 blue:(c&1) ? 1.0 : 0.0 alpha:1.0];
    
+   CGPoint point = CGPointMake(320/2, 480/2);
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[newController view] setBackgroundColor:color];
+   [[self navigationController] kt_pushViewController:newController explodeFromPoint:point];
+   [newController release];
 }
+
+- (void)popImplode
+{
+   CGPoint point = CGPointMake(320/2, 480/2);
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[self navigationController] kt_popViewControllerImplodeToPoint:point];
+   [newController release];
+}
+
+- (void)pushSlideUp
+{
+   NSInteger c = (arc4random() % 10) + 1;
+   UIColor *color = [UIColor colorWithRed:(c&4) ? 1.0 : 0.0 green:(c&2) ? 1.0 : 0.0 blue:(c&1) ? 1.0 : 0.0 alpha:1.0];
+   
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[newController view] setBackgroundColor:color];
+   [[self navigationController] kt_pushViewController:newController slideUpWithDuration:0.6];
+   [newController release];
+}
+
+- (void)popSlideDown
+{
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[self navigationController] kt_popViewController:newController slideDownWithDuration:0.6];
+   [newController release];
+}
+
+- (void)pushFadeIn
+{
+   NSInteger c = (arc4random() % 10) + 1;
+   UIColor *color = [UIColor colorWithRed:(c&4) ? 1.0 : 0.0 green:(c&2) ? 1.0 : 0.0 blue:(c&1) ? 1.0 : 0.0 alpha:1.0];
+   
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[newController view] setBackgroundColor:color];
+   [[self navigationController] kt_pushViewController:newController fadeInWithDuration:0.6];
+   [newController release];
+}
+
+- (void)popFadeOut
+{
+   UIViewController *newController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+   [[self navigationController] kt_popViewController:newController fadeOutWithDuration:0.6];
+   [newController release];
+}
+
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource and UITableViewDelegate Methods
