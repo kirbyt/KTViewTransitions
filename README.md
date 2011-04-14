@@ -1,7 +1,7 @@
 KTViewTransitions
 =================
 
-This is a sample iOS project that I am using to explore ways to animate views. The goal is to create a set of reusable view transition animations that can be used in other projects.
+This is a set of sample iOS projects I'm using to explore ways to animate views. The goal is to create a set of reusable view transition animations that everyone can be used in other projects.
 
 UINavigationController+KTTransitions
 ====================================
